@@ -1,0 +1,57 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name": "Учебная литература",
+        "description": "Образовательные пособия"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name": "Книги для детей",
+        "description": "Литература для маленьких"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Физика",
+        "description": "Учебник по физике",
+        "image": "",
+        "category": 1,
+        "price": "100.00",
+        "created_at": "2025-06-28T12:31:04.323Z",
+        "updated_at": "2025-06-28T14:16:09.954Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Химия",
+        "description": "Учебник по химии",
+        "image": "",
+        "category": 1,
+        "price": "150.00",
+        "created_at": "2025-06-28T12:31:16.019Z",
+        "updated_at": "2025-06-28T14:18:05.318Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "name": "Басни",
+        "description": "Истории со смыслом",
+        "image": "",
+        "category": 2,
+        "price": "250.00",
+        "created_at": "2025-06-28T12:31:34.301Z",
+        "updated_at": "2025-06-28T14:19:34.069Z"
+    }
+}
+]
