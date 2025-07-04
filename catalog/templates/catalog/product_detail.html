@@ -1,6 +1,6 @@
 {% extends "catalog/base.html" %}
 {% load static %}
-{% block title %}Список книг{% endblock %}
+{% block title %}Подробнее о книге{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -11,7 +11,7 @@
                     <h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{ product.category</p>
+                    <p class="card-text">{{ product.category }}</p>
                     <p class="card-text">{{ product.description|truncatechars:100 }}</p>
                     <h4 class="text-primary">{{ product.price }} руб.</h4>
                     {% if product.image %}
