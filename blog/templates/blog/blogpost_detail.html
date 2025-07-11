@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "catalog/base.html" %}
 
 {% block content %}
 <div class="container mt-4">
@@ -15,13 +15,13 @@
 
     {% if user.is_authenticated %}
     <div class="text-center mt-4">
-        <a href="{% url 'blog:blog_edit' object.pk %}" class="btn btn-warning">Редактировать</a>
-        <a href="{% url 'blog:blog_delete' object.pk %}" class="btn btn-danger">Удалить</a>
+        <a href="{% url 'blog:blogpost_update' object.pk %}" class="btn btn-warning">Редактировать</a>
+        <a href="{% url 'blog:blogpost_delete' object.pk %}" class="btn btn-danger">Удалить</a>
     </div>
     {% endif %}
 
     <div class="text-center mt-4">
-        <a href="{% url 'blog:blog_list' %}" class="btn btn-outline-primary">← Назад к блогу</a>
+        <a href="{% url 'blog:blogpost_list' %}" class="btn btn-outline-primary">← Назад к блогу</a>
     </div>
 </div>
 {% endblock %}

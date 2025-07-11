@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "catalog/base.html" %}
 
 {% block content %}
 <div class="container mt-4">
@@ -13,7 +13,7 @@
     </form>
 
     <div class="text-center mt-3">
-        <a href="{% url 'blog:blog_list' %}" class="btn btn-outline-secondary">← Назад к блогу</a>
+        <a href="{% url 'blog:blogpost_list' %}" class="btn btn-outline-secondary">← Назад к блогу</a>
     </div>
 </div>
 {% endblock %}

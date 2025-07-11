@@ -19,7 +19,7 @@ class BlogListView(ListView):
 
 class BlogDetailView(DetailView):
     model = BlogPost
-    template_name = "blog/detail.html"
+    template_name = "blog/blogpost_detail.html"
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
@@ -31,7 +31,7 @@ class BlogDetailView(DetailView):
 class BlogCreateView(CreateView):
     model = BlogPost
     fields = ["title", "content", "preview_image", "is_published"]
-    success_url = reverse_lazy("blog:blog_list")
+    success_url = reverse_lazy("blog:blogpost_list")
 
 
 class BlogUpdateView(UpdateView):
@@ -39,9 +39,9 @@ class BlogUpdateView(UpdateView):
     fields = ["title", "content", "preview_image", "is_published"]
 
     def get_success_url(self):
-        return reverse_lazy("blog:blog_detail", kwargs={"pk": self.object.pk})
+        return reverse_lazy("blog:blogpost_detail", kwargs={"pk": self.object.pk})
 
 
 class BlogDeleteView(DeleteView):
     model = BlogPost
-    success_url = reverse_lazy("blog:blog_list")
+    success_url = reverse_lazy("blog:blogpost_list")
