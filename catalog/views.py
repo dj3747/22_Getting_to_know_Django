@@ -1,25 +1,43 @@
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
+
 from .models import Product
+from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
-def home(request):
-    return render(request, "catalog/home.html")
+class HomeView(TemplateView):
+    template_name = 'catalog/home.html'
 
 
-def contacts(request):
-    if request.method == "POST":
-        name = request.POST.get("name")
+class ContactsView(TemplateView):
+    template_name = "catalog/contacts.html"
 
-        return HttpResponse(f"Спасибо, {name}! Сообщение получено.")
-    return render(request, "catalog/contacts.html")
 
-def products_list(request):
-    products = Product.objects.all()
-    context = {"products": products}
-    return render(request, "catalog/products_list.html", context)
+class ProductsListView(ListView):
+    model = Product
+    template_name = "catalog/products_list.html"
+    context_object_name = "products"
 
-def product_detail(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    context = {"product": product}
-    return render(request, "catalog/product_detail.html", context)
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = "catalog/product_detail.html"
+    context_object_name = "product"
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    fields = ["name", "price", "category", "image"]
+    template_name = "catalog/product_form.html"
+    success_url = reverse_lazy("catalog:products_list")
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    fields = ["name", "price", "category", "image"]
+    template_name = "catalog/product_form.html"
+    success_url = reverse_lazy("catalog:products_list")
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = "catalog/product_confirm_delete.html"
+    success_url = reverse_lazy("catalog:products_list")
