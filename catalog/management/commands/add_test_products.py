@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+
 from catalog.models import Category, Product
 
 
@@ -34,11 +35,6 @@ class Command(BaseCommand):
             price="150.00",
         )
 
-        Product.objects.create(
-            name="Басни",
-            description="Истории со смыслом",
-            category=category2,
-            price="250.00"
-        )
+        Product.objects.create(name="Басни", description="Истории со смыслом", category=category2, price="250.00")
 
         self.stdout.write(self.style.SUCCESS("Тестовые продукты добавлены!"))
