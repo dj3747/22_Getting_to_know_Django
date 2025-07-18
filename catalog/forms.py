@@ -1,10 +1,9 @@
 from django import forms
+
 from .models import Product
 
-FORBIDDEN_WORDS = [
-    "казино", "криптовалюта", "крипта", "биржа", "дешево",
-    "бесплатно", "обман", "полиция", "радар"
-]
+FORBIDDEN_WORDS = ["казино", "криптовалюта", "крипта", "биржа", "дешево", "бесплатно", "обман", "полиция", "радар"]
+
 
 class ProductForm(forms.ModelForm):
     class Meta:
@@ -39,5 +38,3 @@ class ProductForm(forms.ModelForm):
         if price < 0:
             raise forms.ValidationError("Цена не может быть отрицательной!")
         return price
-
-
