@@ -23,6 +23,8 @@
                              alt="Нет изображения"
                              class="card-img-top img-fluid mb-3">
                     {% endif %}
+                    <a href="{% url 'catalog:product_update' product.pk %}" class="btn btn-secondary">Редактировать</a>
+                    <a href="{% url 'catalog:product_confirm_delete' product.pk %}" class="btn btn-danger">Удалить</a>
                 </div>
             </div>
         </div>
