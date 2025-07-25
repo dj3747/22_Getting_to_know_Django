@@ -1,9 +1,12 @@
 <header>
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h1 class="display-4">Букмаркет</h1>
-        <nav>
-            <a href="{% url 'catalog:products_list' %}">Список книг</a>
-            <a href="{% url 'catalog:product_create' %}">Добавить книгу</a>
-        </nav>
+        <a href="{% url 'catalog:product_create' %}" class="btn btn-primary">Добавить книгу</a>
+        {% if user.is_authenticated %}
+            <p>Добро пожаловать, {{ user.username }}!</p>
+        {% else %}
+            <p>Добро пожаловать на сайт!</p>
+        {% endif %}
+
     </div>
 </header>
