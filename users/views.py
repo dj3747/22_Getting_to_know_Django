@@ -4,11 +4,14 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 from django.core.mail import send_mail
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class RegisterView(CreateView):
     form_class = CustomUserCreationForm
     template_name = "users/register.html"
-    success_url = reverse_lazy("users:login")
+    success_url = reverse_lazy("catalog:home")
 
 def register_view(request):
     if request.method == 'POST':
@@ -18,8 +21,9 @@ def register_view(request):
             send_mail(
                 'Добро пожаловать!',
                 'Вы успешно зарегистрировались в магазине.',
-                'from@example.com',
+                'EMAIL_HOST_USER',
                 [user.email],
+                fail_silently=False,  # Для отладки - покажет исключение при ошибке
             )
             login(request, user)
             return redirect('home')
