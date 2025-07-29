@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from users.models import CustomUser
 
+
 @admin.register(CustomUser)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ("pk", "email" )
+    list_display = ("pk", "email")

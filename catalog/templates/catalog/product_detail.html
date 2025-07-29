@@ -23,8 +23,19 @@
                              alt="Нет изображения"
                              class="card-img-top img-fluid mb-3">
                     {% endif %}
+                    <div class="col-md-6">
+                        <p><strong>Категория:</strong> {{ product.category.name }}</p>
+                        <p><strong>Описание:</strong> {{ product.description }}</p>
+                        <p><strong>Цена:</strong> {{ product.price }} ₽</p>
+                        <p><strong>Статус публикации:</strong> {{ product.get_status_display }}</p>
+                        <p><strong>Владелец:</strong> {{ product.owner }}</p>
+                    </div>
+                    {% if request.user == product.owner or perms.catalog.can_unpublish_product %}
                     <a href="{% url 'catalog:product_update' product.pk %}" class="btn btn-secondary">Редактировать</a>
+                    {% endif %}
+                    {% if request.user == product.owner or perms.catalog.can_delete_any_product %}
                     <a href="{% url 'catalog:product_confirm_delete' product.pk %}" class="btn btn-danger">Удалить</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
