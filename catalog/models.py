@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 
@@ -34,6 +35,13 @@ class Product(models.Model):
         choices=STATUS_CHOICES,
         default=DRAFT,
         verbose_name="Статус публикации",
+    )
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name="Владелец",
+        null=True,
+        blank=True,
     )
 
     def __str__(self):

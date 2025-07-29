@@ -1,7 +1,9 @@
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .forms import ProductForm
 from .models import Product
 
@@ -44,3 +46,15 @@ class ProductDeleteView(DeleteView):
     model = Product
     template_name = "catalog/product_confirm_delete.html"
     success_url = reverse_lazy("catalog:products_list")
+
+class ProductUnpublishView(PermissionRequiredMixin, View):
+    permission_required = "catalog.can_unpublish_product"
+
+    def post(self, request, pk):
+        product = get_object_or_404(Product, pk=pk)
+
+        if product.status == Product.PUBLISHED:
+            product.status = Product.DRAFT
+            product.save()
+            messages.success(request, f"Товар '{product.name}' снят с публикации.")
+            return redirect(reverse("product_detail", kwargs={'pk': pk}))
