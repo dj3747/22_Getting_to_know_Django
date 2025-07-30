@@ -69,4 +69,4 @@ class ProductUnpublishView(PermissionRequiredMixin, View):
             product.status = Product.DRAFT
             product.save()
             messages.success(request, f"Товар '{product.name}' снят с публикации.")
-            return redirect(reverse("product_detail", kwargs={"pk": pk}))
+        return redirect(reverse("catalog:product_detail", kwargs={"pk": pk}))
