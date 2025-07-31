@@ -1,5 +1,7 @@
-from catalog.models import Product
 from django.core.cache import cache
+
+from catalog.models import Product
+
 
 class ProductService:
     @staticmethod
@@ -7,6 +9,6 @@ class ProductService:
         key = f"products_in_category_{category_id}"
         products = cache.get(key)
         if products is None:
-            products = Product.objects.filter(category_id=category_id).prefetch_related('category')
+            products = Product.objects.filter(category_id=category_id).prefetch_related("category")
             cache.set(key, list(products), 60 * 15)
         return products
