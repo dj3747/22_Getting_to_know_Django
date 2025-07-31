@@ -126,6 +126,7 @@ EMAIL_HOST_USER = 'Dj3747@yandex.ru'
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_USER")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+CACHE_ENABLED = True
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
