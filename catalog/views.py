@@ -9,7 +9,7 @@ from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 from django.core.cache import cache
 from .forms import ProductForm
-from .models import Product
+from .models import Product, Category
 from .services import ProductService
 
 class HomeView(TemplateView):
@@ -95,3 +95,8 @@ class ProductByCategoryView(ListView):
         context = super().get_context_data(**kwargs)
         context['category_id'] = self.kwargs['category_id']
         return context
+
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'catalog/category_list.html'
+    context_object_name = 'categories'
